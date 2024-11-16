@@ -1,8 +1,8 @@
 import customtkinter as ctk
 from tkinter import ttk
-from Ingredientes import Ingredientes
-from Inventario import Inventario
-from PDF import GeneradorPDF
+from clases.Ingredientes import Ingredientes
+from clases.Inventario import Inventario
+from clases.PDF import GeneradorPDF
 import re
 from CTkMessagebox import CTkMessagebox
 from PIL import Image
