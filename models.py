@@ -27,4 +27,8 @@ class Pedido(Base):
         self.cantidad = cantidad
         self.precio = precio
 
-        
+
+class Cliente:
+    def __init__(self, nombre, correo_electronico):
+        self.nombre = nombre
+        self.correo_electronico = correo_electronico

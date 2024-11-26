@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from models import Ingrediente
+from ..models import Ingrediente
 
 class IngredientesCRUD:
     @staticmethod

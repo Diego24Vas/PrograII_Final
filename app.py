@@ -2,6 +2,12 @@ import customtkinter as ctk
 from tkinter import ttk
 from clases.Ingredientes import Ingredientes
 from clases.Inventario import Inventario
+from clases.Cliente import Cliente
+
+from crud.cliente_crud import ClienteCRUD
+from crud.pedido_crud import PedidoCRUD
+from crud.ingredientes_crud import IngredientesCRUD
+
 from clases.PDF import GeneradorPDF
 import re
 from CTkMessagebox import CTkMessagebox
@@ -96,10 +102,23 @@ class AplicacionConPestanas(ctk.CTk):
 
 # ------------------------------------ Pestaña de Clientes ------------------------------------
 
+# ------------------------------------ Pestaña de Clientes ------------------------------------
+
     def clientes(self):
         tarjetas_frame = ctk.CTkFrame(self.tab2)
         tarjetas_frame.pack(side="top", fill="both", padx=10, pady=10)
 
+        # Entrada para el nombre
+        self.label_nombre = ctk.CTkLabel(tarjetas_frame, text="Nombre:")
+        self.label_nombre.pack(side="top", padx=10, pady=5)
+        self.entry_nombre = ctk.CTkEntry(tarjetas_frame)
+        self.entry_nombre.pack(side="top", padx=10, pady=5)
+
+        # Entrada para el correo
+        self.label_correo = ctk.CTkLabel(tarjetas_frame, text="Correo:")
+        self.label_correo.pack(side="top", padx=10, pady=5)
+        self.entry_correo = ctk.CTkEntry(tarjetas_frame)
+        self.entry_correo.pack(side="top", padx=10, pady=5)
 
 
 # ------------------------------------ Pestaña de Panel de Compra ------------------------------------
