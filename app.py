@@ -7,6 +7,9 @@ import re
 from CTkMessagebox import CTkMessagebox
 from PIL import Image
 
+
+
+# ------------------------------------ Clase de la Aplicación ------------------------------------
 class AplicacionConPestanas(ctk.CTk):
     def __init__(self):
         super().__init__()
@@ -37,13 +40,23 @@ class AplicacionConPestanas(ctk.CTk):
     def crear_pestanas(self):
         # Crear y configurar las pestañas
         self.tab1 = self.tabview.add("Ingreso de ingredientes")
-        self.tab2 = self.tabview.add("Pedido")
+        self.tab2 = self.tabview.add("Clientes")
+        self.tab3 = self.tabview.add("Panel de Compra")
+        self.tab4 = self.tabview.add("Pedido")
+        self.tab5 = self.tabview.add("Graficos")
 
         # Configurar el contenido de las pestañas
-        self.configurar_pestana1()
-        self.configurar_pestana2()
+        self.ingredientes()
+        self.clientes()
+        self.panel_compra()
+        self.pedidos()
+        self.graficos()
 
-    def configurar_pestana1(self):
+
+
+# ------------------------------------ Pestaña de Ingredientes ------------------------------------
+
+    def ingredientes(self):
         # Dividir la pestaña en dos frames
         frame_formulario = ctk.CTkFrame(self.tab1)
         frame_formulario.pack(side="left", fill="both", expand=True, padx=10, pady=10)
@@ -79,8 +92,28 @@ class AplicacionConPestanas(ctk.CTk):
         self.tree.heading("Cantidad", text="Cantidad")
         self.tree.pack(expand=True, fill="both", padx=10, pady=10)
 
-    def configurar_pestana2(self):
+
+
+# ------------------------------------ Pestaña de Clientes ------------------------------------
+
+    def clientes(self):
         tarjetas_frame = ctk.CTkFrame(self.tab2)
+        tarjetas_frame.pack(side="top", fill="both", padx=10, pady=10)
+
+
+
+# ------------------------------------ Pestaña de Panel de Compra ------------------------------------
+
+    def panel_compra(self):
+        tarjetas_frame = ctk.CTkFrame(self.tab3)
+        tarjetas_frame.pack(side="top", fill="both", padx=10, pady=10)
+
+
+
+# ------------------------------------ Pestaña de Pedidos ------------------------------------
+
+    def pedidos(self):
+        tarjetas_frame = ctk.CTkFrame(self.tab4)
         tarjetas_frame.pack(side="top", fill="both", padx=10, pady=10)
 
 
@@ -109,7 +142,7 @@ class AplicacionConPestanas(ctk.CTk):
         self.boton_Papas.pack(side="left", padx=10, pady=10)
 
         # Treeview para pedidos
-        frame_treeview2 = ctk.CTkFrame(self.tab2)
+        frame_treeview2 = ctk.CTkFrame(self.tab4)
         frame_treeview2.pack(side="bottom", fill="both", expand=True, padx=10, pady=10)
 
         self.tree_pedido = ttk.Treeview(frame_treeview2, columns=("Menu", "Cantidad", "Precio"), show="headings")
@@ -125,8 +158,19 @@ class AplicacionConPestanas(ctk.CTk):
 
         self.boton_pdf = ctk.CTkButton(frame_treeview2, text="Generar Boleta", fg_color="green", text_color="white", command=self.generar_pdf)
         self.boton_pdf.pack(pady=10)
-        
-        
+
+
+# ------------------------------------ Pestaña de Graficos ------------------------------------
+
+    def graficos(self):
+        tarjetas_frame = ctk.CTkFrame(self.tab5)
+        tarjetas_frame.pack(side="top", fill="both", padx=10, pady=10)
+
+
+
+
+# ------------------------------------ Funciones de la Aplicación ------------------------------------
+
     def eliminar_ingrediente(self):
         seleccion = self.tree.selection()
         if not seleccion:
@@ -246,6 +290,7 @@ class AplicacionConPestanas(ctk.CTk):
 
        
 
+# ------------------------------------ Funciones de Validación ------------------------------------
 
     def validar_nombre(self, nombre):
         if re.match(r"^[a-zA-Z\s]+$", nombre):
@@ -322,6 +367,8 @@ class AplicacionConPestanas(ctk.CTk):
             self.boton_Papas.configure(state="disabled")
 
 
+# ------------------------------------ Funciones de Actualización ------------------------------------
+
     def actualizar_treeview(self):
         # Limpiar el Treeview actual
         for item in self.tree.get_children():
@@ -344,6 +391,10 @@ class AplicacionConPestanas(ctk.CTk):
         # Agregar los datos almacenados en self.menu_datos al Treeview de la segunda pestaña
         for dato in self.menu_datos:
             self.tree_pedido.insert("", "end", values=(dato[0], dato[1], "Precio a definir"))
+
+
+
+# ------------------------------------ Función Principal ------------------------------------
 
 if __name__ == "__main__":
     ctk.set_appearance_mode("System")
